@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Restaurant Details</title>
+ <link rel="stylesheet" href="style.css">
+  <style>
+    .detail-container { width: min(1100px, 92%); margin: 0 auto; }
+    .detail-hero { position: relative; border-radius: 18px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); margin-top: 18px; }
+    .detail-hero img { width: 100%; display: block; object-fit: cover; aspect-ratio: 16 / 8; }
+    .detail-content { margin: 18px 0 40px; }
+    .overlay-info { position: absolute; inset: auto 12px 12px 12px; display: flex; gap: 10px; }
+    .tag { background: #0b1220cc; color: #a5b9ff; border: 1px solid #26354a; padding: 6px 10px; border-radius: 999px; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container detail-container">
+      <h1 id="restaurant-name">Restaurant</h1>
+      <p class="subtitle" id="restaurant-subtitle">Details</p>
+    </div>
+  </header>
+
+  <main class="detail-container">
+    <section class="detail-hero">
+      images/image.jpg
+      <div class="overlay-info">
+        <span class="tag" id="rating-tag">Rating</span>
+        <span class="tag" id="cuisine-tag">Cuisine</span>
+        <span class="tag" id="area-tag">Area</span>
+      </div>
+    </section>
+
+    <section class="detail-content">
+      <h2>About</h2>
+      <p id="about-text">Basic details page.</p>
+
+      <div class="cta-row">
+        index.html← Back to list</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container detail-container">
+      <small>© 2025 Coimbatore Eats • Built with ❤️</small>
+    </div>
+  </footer>
+
+  <script>
+    // Read ?id= from URL (e.g., restaurant.html?id=ananthapuri)
+    const id = new URLSearchParams(location.search).get('id') || 'restaurant';
+
+    // Minimal data mapping
+    const details = {
+      'ananthapuri': { name: 'Ananthapuri Restaurant', cuisine: 'South Indian', area: 'Gandhipuram', rating: '4.4 ★', about: 'Family-friendly South Indian restaurant.' },
+      'hari-bhavanam': { name: 'Hari Bhavanam', cuisine: 'Chettinad', area: 'RS Puram', rating: '4.6 ★', about: 'Popular Chettinad cuisine spot.' },
+      'sree-ananthaas': { name: 'Sree Ananthaas', cuisine: 'Veg', area: 'Peelamedu', rating: '4.2 ★', about: 'Pure veg quick bites and tiffin.' },
+      'kovai-biriyani': { name: 'Kovai Biriyani House', cuisine: 'Biriyani', area: 'Ukkadam', rating: '4.5 ★', about: 'Well-known biriyani house.' }
+    };
+
+    const info = details[id] || { name: 'Restaurant', cuisine: '—', area: '—', rating: '—', about: 'No details found.' };
+
+    // Populate UI
+    document.getElementById('restaurant-name').textContent = info.name;
+    document.getElementById('restaurant-subtitle').textContent = `${info.cuisine} • ${info.area}`;
+    document.getElementById('rating-tag').textContent = info.rating;
+    document.getElementById('cuisine-tag').textContent = info.cuisine;
+    document.getElementById('area-tag').textContent = info.area;
+    document.getElementById('about-text').textContent = info.about;
+  </script>
+</body>
+</html>
